@@ -1,0 +1,77 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body, html { width: 100%; height: 100%; overflow: hidden; }
+
+.scene {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background: #5ecfff; /* fallback */
+}
+
+/* Céu */
+.sky {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 70%;
+  background: url('img/sky.png') repeat-x;
+  background-size: cover;
+  z-index: 1;
+  animation: moveSky 30s linear infinite;
+}
+
+/* Chão */
+.ground {
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 200%; height: 30%;
+  background: url('img/ground.png') repeat-x;
+  background-size: contain;
+  z-index: 3;
+  animation: moveGround 5s linear infinite;
+}
+
+/* Cano */
+#pipe {
+  position: absolute;
+  bottom: 30%; /* ajusta para ficar no chão */
+  left: 70%;
+  height: 20%;
+  z-index: 4;
+}
+
+/* Mario */
+#mario {
+  position: absolute;
+  bottom: 30%; /* mesmo level do topo do cano */
+  left: 10%;
+  width: 50px; height: 70px;
+  background: url('img/mario-sprite.png') no-repeat;
+  background-size: 300% 100%; /* 3 frames horizontais */
+  z-index: 5;
+  animation: runMario 0.5s steps(3) infinite, 
+             moveMario 5s linear infinite;
+}
+
+/* Animação de frames do Mario */
+@keyframes runMario {
+  100% { background-position: -300px 0; }
+}
+
+/* Faz o Mario “andar” na tela
+   (volta ao início para loop) */
+@keyframes moveMario {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(60vw); }
+}
+
+/* Scroll do céu */
+@keyframes moveSky {
+  from { background-position-x: 0; }
+  to   { background-position-x: -1000px; }
+}
+
+/* Scroll do chão */
+@keyframes moveGround {
+  from { background-position-x: 0; }
+  to   { background-position-x: -800px; }
+}
