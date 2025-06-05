@@ -1,28 +1,36 @@
-// Exemplo simples: quando o usuário clicar, o Mario faz um “pulo”
-const mario = document.getElementById('mario');
-let pulando = false;
+const mario = document.querySelector('.mario');
+const pipe = document.querySelector('.pipe');
 
-function pula() {
-  if (pulando) return;
-  pulando = true;
-  mario.style.animation = 
-    'runMario 0.5s steps(3) infinite, ' +  // mantém corrida
-    'jump 0.7s ease-out both';              // adiciona pulo
-  setTimeout(() => {
-    // volta ao movimento padrão
-    mario.style.animation = 
-      'runMario 0.5s steps(3) infinite, moveMario 5s linear infinite';
-    pulando = false;
-  }, 700);
+const jump = () => {
+    mario.classList.add('jump');
+
+    setTimeout(() => {
+        mario.classList.remove('jump');
+    }, 500);
 }
 
-document.addEventListener('click', pula);
+const loop = setInterval(() => {
 
-// Keyframes para o pulo
-const styleSheet = document.styleSheets[0];
-styleSheet.insertRule(`
-@keyframes jump {
-  0%   { transform: translate(0, 0); }
-  50%  { transform: translate(0, -150px); }
-  100% { transform: translate(0, 0); }
-}`, styleSheet.cssRules.length);
+    console.log('loop')
+
+    const pipePosition = pipe.offsetLeft;
+    const marioPosition = +window.getComputedStyle(mario).bottom.replace('px','');
+
+    if (pipePosition <= 120 && pipePosition > 0 && marioPosition < 105) {
+
+        pipe.style.animation = 'none';
+        pipe.style.left = `${pipePosition}px`;
+        
+        mario.style.animation = 'none';
+        mario.style.bottom = `${marioPosition}px`; 
+
+        mario.src = 'img/game-over.png';
+        mario.style.width = '75px'
+        mario.style.marginLeft = '50px'
+
+        clearInterval(loop);
+    }
+
+}, 10);
+
+document.addEventListener('keydown', jump);

@@ -1,77 +1,82 @@
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body, html { width: 100%; height: 100%; overflow: hidden; }
-
-.scene {
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-  background: #5ecfff; /* fallback */
+* {
+    margin: 0;
+    padding: 0; 
+    box-sizing: border-box;
 }
 
-/* Céu */
-.sky {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 70%;
-  background: url('img/sky.png') repeat-x;
-  background-size: cover;
-  z-index: 1;
-  animation: moveSky 30s linear infinite;
+.game-board {
+    width: 100%;
+    height: 500px;
+    border-bottom: 15px solid green;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(#87CEEB, #E0F6FF);
 }
 
-/* Chão */
-.ground {
-  position: absolute;
-  bottom: 0; left: 0;
-  width: 200%; height: 30%;
-  background: url('img/ground.png') repeat-x;
-  background-size: contain;
-  z-index: 3;
-  animation: moveGround 5s linear infinite;
+.pipe {
+    position: absolute;
+    bottom: 0;
+    width: 80px;
+    animation: pipe-animation 1.5s infinite linear;
 }
 
-/* Cano */
-#pipe {
-  position: absolute;
-  bottom: 30%; /* ajusta para ficar no chão */
-  left: 70%;
-  height: 20%;
-  z-index: 4;
+.mario {
+    width: 150px;
+    position: absolute;
+    bottom: 0;
 }
 
-/* Mario */
-#mario {
-  position: absolute;
-  bottom: 30%; /* mesmo level do topo do cano */
-  left: 10%;
-  width: 50px; height: 70px;
-  background: url('img/mario-sprite.png') no-repeat;
-  background-size: 300% 100%; /* 3 frames horizontais */
-  z-index: 5;
-  animation: runMario 0.5s steps(3) infinite, 
-             moveMario 5s linear infinite;
+.jump {
+    animation: jump 500ms ease-out;
 }
 
-/* Animação de frames do Mario */
-@keyframes runMario {
-  100% { background-position: -300px 0; }
+.clouds {
+    position: absolute;
+    width: 550px;
+    animation: clouds-animation 20s infinite linear;
 }
 
-/* Faz o Mario “andar” na tela
-   (volta ao início para loop) */
-@keyframes moveMario {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(60vw); }
+
+@keyframes pipe-animation {
+    from {
+        right: -550px;
+    }
+
+    to {
+        right: 100%;
+    }
 }
 
-/* Scroll do céu */
-@keyframes moveSky {
-  from { background-position-x: 0; }
-  to   { background-position-x: -1000px; }
+@keyframes jump {
+
+    0% {
+        bottom: 0;
+    }
+
+   40% {
+        bottom: 180px;
+    }
+
+    50% {
+        bottom: 180px;
+    }
+
+   60% {
+        bottom: 180px;
+    }
+
+    100% {
+        bottom: 0;
+    }
 }
 
-/* Scroll do chão */
-@keyframes moveGround {
-  from { background-position-x: 0; }
-  to   { background-position-x: -800px; }
+@keyframes clouds-animation {
+    from {
+        right: -550px;
+    }
+
+    to {
+        right: 100%;
+    }
 }
