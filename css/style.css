@@ -11,14 +11,34 @@
     margin: 0 auto;
     position: relative;
     overflow: hidden;
+   /* background: linear-gradient(#87CEEB, #E0F6FF); */
+}
+
+/*Fundo escuro inicial para o game-board */
+.initial-dark {
+    background: #000; /* Fundo preto */
+}
+
+/* Fundo original do jogo que será ativado */
+.game-active {
     background: linear-gradient(#87CEEB, #E0F6FF);
+}
+
+.score { 
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-family: Arial, sans-serif;
+    font-size: 1.5em;
+    color: #333;
+    z-index: 10;
 }
 
 .pipe {
     position: absolute;
     bottom: 0;
     width: 80px;
-    animation: pipe-animation 1.5s infinite linear;
+    /*animation: pipe-animation 1.5s infinite linear;*/
 }
 
 .mario {
@@ -35,6 +55,67 @@
     position: absolute;
     width: 550px;
     animation: clouds-animation 20s infinite linear;
+}
+
+/* Esconde elementos do jogo por padrão */
+.hidden-game-element {
+    display: none;
+}
+
+/* Mostra elementos quando o jogo está ativo */
+.visible-game-element {
+    display: block; /* Ou inline-block, dependendo do elemento */
+}
+
+/* Estilos para o botão de início */
+.start-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 15px 30px;
+    font-size: 2em;
+    font-family: 'Press Start 2P', cursive; /* Se tiver essa fonte, senão Arial */
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    z-index: 20; /* Para ficar acima de outros elementos */
+    box-shadow: 3px 3px 5px rgba(0,0,0,0.3);
+    transition: background-color 0.3s ease;
+}
+
+.start-button:hover {
+    background-color: #45a049;
+}
+
+/* Estilos para o botão de Reiniciar */
+.restart-button {
+    position: absolute;
+    top: 60%; /* Um pouco abaixo do centro para não cobrir o Mário de game over */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px 20px;
+    font-size: 1.5em;
+    font-family: 'Press Start 2P', cursive;
+    background-color: #f44336; /* Cor vermelha para Reiniciar */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    z-index: 20;
+    box-shadow: 3px 3px 5px rgba(0,0,0,0.3);
+    transition: background-color 0.3s ease;
+}
+
+.restart-button:hover {
+    background-color: #da190b;
+}
+
+
+.hidden { /* Classe para esconder o botão */
+    display: none;
 }
 
 

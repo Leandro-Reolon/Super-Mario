@@ -11,11 +11,18 @@
   
 </head>
 <body>
-  <div class="game-board">
-    <img src="img/clouds.png" class="clouds">
-    <img src="img/mario.gif" class="mario">
-    <img src="img/pipe.png" class="pipe">
+  <div class="game-board initial-dark"> 
+  <div class="score hidden-game-element">Score: 0</div> 
+  <img src="img/clouds.png" class="clouds hidden-game-element"> 
+  <img src="img/mario.gif" class="mario hidden-game-element"> 
+  <img src="img/pipe.png" class="pipe hidden-game-element"> 
+  <button class="start-button">START</button>
+  <button class="restart-button hidden">RESTART</button>
 </div>
+
+    <audio id="jumpSound" src="audio/maro-jump-sound-effect_1.mp3" preload="auto"></audio>
+    <audio id="themeSound" src="audio/Super Mario Bros Soundtrack (NES).mp3" preload="auto" loop></audio>
+    <audio id="gameOverSound" src="audio/super-mario-death-sound-sound-effect.mp3" preload="auto"></audio>
 
 </body>
 </html>
